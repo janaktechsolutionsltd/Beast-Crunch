@@ -42,7 +42,8 @@
                 <p class="reveal">Discover a symphony of flavours crafted with savage passion and surgical precision. Modern fusion at its absolute peak.</p>
                 <div class="hero-btns reveal">
                     <a href="#menu" class="btn btn-primary">Discover the Menu</a>
-                    <a href="#about" class="btn btn-outline">Our Heritage</a>
+                    <button id="open-nutrition-modal" class="btn btn-outline">Calculate Protein</button>
+                    <a href="#about" class="btn btn-outline" style="display: none;">Our Heritage</a>
                 </div>
             </div>
             <div class="scroll-indicator">
@@ -53,12 +54,19 @@
         <section id="menu" class="menu-section container">
             <div class="section-header">
                 <h2>Our Exquisite <span>Menu</span></h2>
-                <div class="menu-categories">
-                    <button class="cat-btn active" data-category="all">All</button>
-                    <button class="cat-btn" data-category="starters">Starters</button>
-                    <button class="cat-btn" data-category="mains">Mains</button>
-                    <button class="cat-btn" data-category="desserts">Desserts</button>
-                    <button class="cat-btn" data-category="drinks">Drinks</button>
+                <div class="menu-filters-wrapper">
+                    <div class="menu-categories">
+                        <button class="cat-btn active" data-category="all">All</button>
+                        <button class="cat-btn" data-category="starters">Starters</button>
+                        <button class="cat-btn" data-category="mains">Mains</button>
+                        <button class="cat-btn" data-category="desserts">Desserts</button>
+                        <button class="cat-btn" data-category="drinks">Drinks</button>
+                    </div>
+                    <div class="dietary-filters">
+                        <button class="diet-btn active" data-diet="all">All</button>
+                        <button class="diet-btn" data-diet="veg"><span class="dietary-badge dietary-veg"></span> Veg</button>
+                        <button class="diet-btn" data-diet="non-veg"><span class="dietary-badge dietary-non-veg"></span> Non-Veg</button>
+                    </div>
                 </div>
             </div>
 
@@ -153,6 +161,65 @@
             </div>
             <div id="policy-text" class="policy-body">
                 <!-- Data injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Nutrition Calculator Modal -->
+    <div id="nutrition-modal" class="modal">
+        <div class="modal-content nutrition-modal-content">
+            <div class="modal-header">
+                <h2>Protein <span>Calculator</span></h2>
+                <button type="button" class="close-btn" id="close-nutrition">&times;</button>
+            </div>
+            <div class="nutrition-body">
+                <p class="nutrition-intro">Calculate your optimal daily protein intake for peak performance.</p>
+                
+                <form id="nutrition-form" class="nutrition-form">
+                    <div class="input-row">
+                        <div class="form-group">
+                            <label for="height-input">Height (cm)</label>
+                            <input type="number" id="height-input" placeholder="e.g. 175" required min="50" max="300">
+                        </div>
+                        <div class="form-group">
+                            <label for="weight-input">Weight (kg)</label>
+                            <input type="number" id="weight-input" placeholder="e.g. 70" required min="20" max="300">
+                        </div>
+                    </div>
+                    
+                    <div class="activity-selector">
+                        <label>Activity Level</label>
+                        <div class="activity-options">
+                            <label class="activity-option">
+                                <input type="radio" name="activity" value="1.2" checked>
+                                <div class="activity-card">
+                                    <strong>Moderate</strong>
+                                    <span>Regular movement</span>
+                                </div>
+                            </label>
+                            <label class="activity-option">
+                                <input type="radio" name="activity" value="1.8">
+                                <div class="activity-card">
+                                    <strong>Beast Mode</strong>
+                                    <span>Heavy lifting / Sports</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block">Calculate My Protein</button>
+                </form>
+
+                <div id="nutrition-result" class="nutrition-result" style="display: none;">
+                    <div class="result-display">
+                        <span class="result-label">Recommended Daily Protein</span>
+                        <div class="result-value"><span id="protein-result-val">0</span>g</div>
+                    </div>
+                    <div class="result-info">
+                        <p>Fuel your muscles with our signature high-protein mains.</p>
+                        <a href="#menu" class="btn btn-outline btn-sm" id="close-and-menu">Explore Meals</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
