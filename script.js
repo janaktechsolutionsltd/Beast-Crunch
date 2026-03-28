@@ -3,6 +3,7 @@ const menuData = [
         id: 1,
         name: "Truffle Arancini",
         category: "starters",
+        dietary: "veg",
         price: 350,
         discount: 10,
         description: "Velvety risotto spheres infused with Perigord black truffles and molten mozzarella, finished with a whisper of garlic emulsion.",
@@ -13,6 +14,7 @@ const menuData = [
         id: 2,
         name: "Pan-Seared Sea Bass",
         category: "mains",
+        dietary: "non-veg",
         price: 750,
         discount: 0,
         description: "Day-boat Sea Bass with a golden-crisp skin, served over creamed seasonal greens and finished with a citrus-herb reduction.",
@@ -22,6 +24,7 @@ const menuData = [
         id: 3,
         name: "Wagyu Beef Carpaccio",
         category: "starters",
+        dietary: "non-veg",
         price: 550,
         discount: 15,
         description: "Paper-thin ribbons of A5 Wagyu, adorned with salt-cured capers, aged Parmigiano-Reggiano, and a drizzle of cold-pressed truffle nectar.",
@@ -32,6 +35,7 @@ const menuData = [
         id: 4,
         name: "Saffron Risotto",
         category: "mains",
+        dietary: "veg",
         price: 650,
         discount: 0,
         description: "Signature arborio rice slow-tempered with hand-picked saffron threads, toasted Mediterranean pine nuts, and 24-month aged parmesan.",
@@ -41,6 +45,7 @@ const menuData = [
         id: 5,
         name: "Deconstructed Cheesecake",
         category: "desserts",
+        dietary: "veg",
         price: 290,
         discount: 0,
         description: "A contemporary play on the classic: Whipped Tahitian vanilla cream, wild berry reduction, and a hand-crumbled artisanal shortbread.",
@@ -50,6 +55,7 @@ const menuData = [
         id: 6,
         name: "Chocolate Lava Cake",
         category: "desserts",
+        dietary: "veg",
         price: 250,
         discount: 20,
         description: "Decadent Valrhona chocolate sponge with a cascading molten core, paired with a scoop of Madagascar vanilla bean gelato.",
@@ -59,6 +65,7 @@ const menuData = [
         id: 7,
         name: "Smoked Old Fashioned",
         category: "drinks",
+        dietary: "veg",
         price: 380,
         discount: 0,
         description: "Small-batch bourbon, hand-charred maple, and house bitters, presented in a cloud of cherry-wood smoke.",
@@ -69,6 +76,7 @@ const menuData = [
         id: 8,
         name: "Passionfruit Martini",
         category: "drinks",
+        dietary: "veg",
         price: 350,
         discount: 5,
         description: "Crystal-clear vodka shaken with vibrant passionfruit nectar, hand-squeezed lime, and a persistent sparkle of prosecco.",
@@ -90,6 +98,8 @@ function migrateData() {
 migrateData();
 
 let cart = JSON.parse(localStorage.getItem('beast_cart')) || [];
+let currentCategory = 'all';
+let currentDiet = 'all';
 
 // DOM Elements
 const menuGrid = document.getElementById('menu-grid');
@@ -115,10 +125,19 @@ const confirmOnline = document.getElementById('confirm-online');
 const upiSection = document.getElementById('upi-section');
 const cardSection = document.getElementById('card-section');
 
-let orderDetails = {
+const orderDetails = {
     customer: {},
     payment: { method: '', type: '' }
 };
+
+// Nutrition Elements
+const nutritionModal = document.getElementById('nutrition-modal');
+const openNutritionBtn = document.getElementById('open-nutrition-modal');
+const closeNutritionBtn = document.getElementById('close-nutrition');
+const nutritionForm = document.getElementById('nutrition-form');
+const nutritionResult = document.getElementById('nutrition-result');
+const proteinVal = document.getElementById('protein-result-val');
+const closeAndMenu = document.getElementById('close-and-menu');
 
 // Initial Render
 function init() {
@@ -130,17 +149,19 @@ function init() {
         localStorage.setItem('beast_menu', JSON.stringify(menuData));
     }
     
-    renderMenu('all');
+    renderMenu();
     updateCartUI();
     setupEventListeners();
 }
 
-function renderMenu(category) {
+function renderMenu() {
     menuGrid.innerHTML = '';
     const items = window.menuItems || menuData;
-    const filteredItems = category === 'all' 
-        ? items 
-        : items.filter(item => item.category === category);
+    const filteredItems = items.filter(item => {
+        const matchCategory = currentCategory === 'all' || item.category === currentCategory;
+        const matchDiet = currentDiet === 'all' || item.dietary === currentDiet;
+        return matchCategory && matchDiet;
+    });
 
     filteredItems.forEach(item => {
         const hasDiscount = item.discount > 0;
@@ -150,6 +171,8 @@ function renderMenu(category) {
 
         const card = document.createElement('div');
         card.className = 'menu-item reveal';
+        const dietaryClass = item.dietary === 'veg' ? 'dietary-veg' : 'dietary-non-veg';
+        
         card.innerHTML = `
             <div class="menu-item-img" style="background-image: url('${item.image}')">
                 ${hasDiscount ? `<div class="discount-badge">${item.discount}% OFF</div>` : ''}
@@ -157,7 +180,7 @@ function renderMenu(category) {
             </div>
             <div class="menu-item-content">
                 <div class="menu-item-header">
-                    <h3>${item.name}</h3>
+                    <h3><span class="dietary-badge ${dietaryClass}"></span>${item.name}</h3>
                     <div class="price">
                         ${hasDiscount ? `<span class="old-price">₹${item.price}</span>` : ''}
                         ₹${discountedPrice}
@@ -264,12 +287,23 @@ function showStep(stepId) {
 
 // Event Listeners
 function setupEventListeners() {
-    // Category Filtering (remains same)
+    // Category Filtering
     document.querySelectorAll('.cat-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelector('.cat-btn.active').classList.remove('active');
             btn.classList.add('active');
-            renderMenu(btn.dataset.category);
+            currentCategory = btn.dataset.category;
+            renderMenu();
+        });
+    });
+
+    // Dietary Filtering
+    document.querySelectorAll('.diet-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelector('.diet-btn.active').classList.remove('active');
+            btn.classList.add('active');
+            currentDiet = btn.dataset.diet;
+            renderMenu();
         });
     });
 
@@ -544,6 +578,51 @@ function setupEventListeners() {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
+        }
+    });
+
+    // Nutrition Calculator Logic
+    if (openNutritionBtn) {
+        openNutritionBtn.addEventListener('click', () => {
+            nutritionModal.classList.add('show');
+            nutritionResult.style.display = 'none';
+            nutritionForm.reset();
+        });
+    }
+
+    if (closeNutritionBtn) {
+        closeNutritionBtn.addEventListener('click', () => {
+            nutritionModal.classList.remove('show');
+        });
+    }
+
+    if (nutritionForm) {
+        nutritionForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const weight = parseFloat(document.getElementById('weight-input').value);
+            const activity = parseFloat(document.querySelector('input[name="activity"]:checked').value);
+            
+            if (weight && activity) {
+                const protein = Math.round(weight * activity);
+                proteinVal.textContent = protein;
+                
+                nutritionResult.style.display = 'block';
+                // Success micro-animation: jump the result
+                proteinVal.parentElement.classList.add('beast-pulse');
+                setTimeout(() => proteinVal.parentElement.classList.remove('beast-pulse'), 500);
+            }
+        });
+    }
+
+    if (closeAndMenu) {
+        closeAndMenu.addEventListener('click', () => {
+            nutritionModal.classList.remove('show');
+        });
+    }
+
+    window.addEventListener('click', (e) => {
+        if (e.target === nutritionModal) {
+            nutritionModal.classList.remove('show');
         }
     });
 }
