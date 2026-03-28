@@ -78,10 +78,11 @@ nav {
     font-size: 1.5rem;
     font-weight: 700;
     letter-spacing: 2px;
+    color: #2ecc71; /* Beast Green */
 }
 
 .logo span {
-    color: var(--primary);
+    color: #fff; /* White */
     font-weight: 300;
 }
 
@@ -327,6 +328,33 @@ nav {
     justify-content: center;
     gap: 1.5rem;
     flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.dietary-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.diet-btn {
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: var(--text-dim);
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.diet-btn.active, .diet-btn:hover {
+    background: var(--glass);
+    color: #fff;
+    border-color: var(--primary);
 }
 
 .cat-btn {
@@ -344,6 +372,51 @@ nav {
     background: var(--primary);
     color: #000;
     border-color: var(--primary);
+}
+
+.dietary-badge {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid;
+    position: relative;
+    top: -1px;
+    margin-right: 8px;
+}
+
+.dietary-veg {
+    border-color: #2ecc71;
+    background-color: transparent;
+}
+
+.dietary-veg::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 6px;
+    background-color: #2ecc71;
+    border-radius: 50%;
+}
+
+.dietary-non-veg {
+    border-color: #e74c3c;
+    background-color: transparent;
+}
+
+.dietary-non-veg::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 6px;
+    background-color: #e74c3c;
+    border-radius: 50%;
 }
 
 .menu-grid {
@@ -1512,3 +1585,33 @@ footer {
     z-index: 5;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
+
+/* Dietary Indicators */
+.dietary-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    border: 1px solid currentColor;
+    padding: 2px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.dietary-badge::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.dietary-veg {
+    color: #2ecc71 !important; /* Green */
+}
+
+.dietary-non-veg {
+    color: #e74c3c !important; /* Red */
+}
+
