@@ -3,6 +3,7 @@ const defaultMenu = [
         id: 1,
         name: "Truffle Arancini",
         category: "starters",
+        dietary: "veg",
         price: 350,
         discount: 10,
         description: "Crispy risotto balls infused with black truffle and mozzarella, served with garlic aioli.",
@@ -12,6 +13,7 @@ const defaultMenu = [
         id: 2,
         name: "Pan-Seared Sea Bass",
         category: "mains",
+        dietary: "non-veg",
         price: 750,
         discount: 0,
         description: "Fresh sea bass fillet, seasonal greens, lemon butter emulsion and herb-crusted potatoes.",
@@ -21,6 +23,7 @@ const defaultMenu = [
         id: 3,
         name: "Wagyu Beef Carpaccio",
         category: "starters",
+        dietary: "non-veg",
         price: 550,
         discount: 15,
         description: "Thinly sliced Wagyu beef, capers, parmesan shavings, and truffle oil drizzle.",
@@ -30,6 +33,7 @@ const defaultMenu = [
         id: 4,
         name: "Saffron Risotto",
         category: "mains",
+        dietary: "veg",
         price: 650,
         discount: 0,
         description: "Creamy arborio rice infused with premium saffron, toasted pine nuts, and aged parmesan.",
@@ -39,6 +43,7 @@ const defaultMenu = [
         id: 5,
         name: "Deconstructed Cheesecake",
         category: "desserts",
+        dietary: "veg",
         price: 290,
         discount: 0,
         description: "Creamy NY style cheesecake elements, berry compote, and graham cracker crumble.",
@@ -48,6 +53,7 @@ const defaultMenu = [
         id: 6,
         name: "Chocolate Lava Cake",
         category: "desserts",
+        dietary: "veg",
         price: 250,
         discount: 20,
         description: "Warm chocolate cake with a molten center, served with vanilla bean gelato.",
@@ -57,6 +63,7 @@ const defaultMenu = [
         id: 7,
         name: "Smoked Old Fashioned",
         category: "drinks",
+        dietary: "veg",
         price: 380,
         discount: 0,
         description: "Premium bourbon, maple syrup, bitters, smoked with cherry wood chips.",
@@ -66,6 +73,7 @@ const defaultMenu = [
         id: 8,
         name: "Passionfruit Martini",
         category: "drinks",
+        dietary: "veg",
         price: 350,
         discount: 5,
         description: "Vodka, passionfruit liqueur, fresh lime, and a shot of prosecco on the side.",
@@ -145,7 +153,10 @@ function renderMenuTable() {
             <td>
                 <div style="display:flex; align-items:center; gap:10px;">
                     <img src="${item.image}" width="40" height="40" style="border-radius:4px; object-fit:cover;">
-                    <span>${item.name}</span>
+                    <div>
+                        <strong>${item.name}</strong><br>
+                        <small style="color:${item.dietary === 'veg' ? '#2ecc71' : '#e74c3c'}">${item.dietary === 'veg' ? 'VEG' : 'NON-VEG'}</small>
+                    </div>
                 </div>
             </td>
             <td>${item.category}</td>
@@ -265,6 +276,7 @@ itemForm.addEventListener('submit', (e) => {
         id: editingId || Date.now(),
         name: document.getElementById('item-name').value,
         category: document.getElementById('item-category').value,
+        dietary: document.getElementById('item-dietary').value,
         price: parseFloat(document.getElementById('item-price').value),
         discount: parseInt(document.getElementById('item-discount').value) || 0,
         image: document.getElementById('item-image').value,
@@ -293,6 +305,7 @@ window.editItem = function (id) {
     document.getElementById('edit-id').value = id;
     document.getElementById('item-name').value = item.name;
     document.getElementById('item-category').value = item.category;
+    document.getElementById('item-dietary').value = item.dietary;
     document.getElementById('item-price').value = item.price;
     document.getElementById('item-discount').value = item.discount;
     document.getElementById('item-image').value = item.image;
