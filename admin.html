@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Beast Crunch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .admin-container {
+            padding-top: 120px;
+            min-height: 100vh;
+        }
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+        .admin-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+        }
+        .admin-form {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            position: sticky;
+            top: 100px;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: #fff;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .admin-table th, .admin-table td {
+            text-align: left;
+            padding: 1.2rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .admin-table th {
+            color: var(--primary);
+            font-family: 'Outfit';
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+        .actions-cell {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+        }
+        .btn-danger {
+            background: #e74c3c;
+            color: #fff;
+        }
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-dark);
+            z-index: 5000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-box {
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        .login-box h2 { margin-bottom: 2rem; }
+        .admin-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 1rem;
+        }
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-dim);
+            font-family: 'Outfit';
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+        .tab-btn.active {
+            color: var(--primary);
+        }
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--primary);
+        }
+        #order-count-badge {
+            background: var(--primary);
+            color: var(--bg-dark);
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-left: 5px;
+        }
+        .tab-view {
+            display: none;
+        }
+        .tab-view.active {
+            display: block;
+        }
+        .order-cust-info {
+            font-size: 0.85rem;
+        }
+        .order-cust-info strong {
+            display: block;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+        .order-items-list {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            list-style: disc;
+            padding-left: 1rem;
+        }
+        .status-badge {
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .status-active { background: rgba(194, 155, 64, 0.2); color: var(--primary); }
+        .status-completed { background: rgba(46, 204, 113, 0.2); color: #2ecc71; }
+    </style>
+</head>
+<body>
+    <header id="header" class="scrolled">
+        <nav class="container">
+            <div class="logo">BEAST<span>ADMIN</span></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Back to Site</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="login-screen" class="login-overlay">
+        <div class="login-box">
+            <h2>Admin Login</h2>
+            <div class="form-group">
+                <input type="password" id="admin-pass" placeholder="Enter Password (admin123)">
+            </div>
+            <button id="login-btn" class="btn btn-primary btn-block">Access Dashboard</button>
+        </div>
+    </div>
+    <main class="container admin-container">
+        <div class="admin-tabs">
+            <button class="tab-btn active" data-tab="menu">Menu Management</button>
+            <button class="tab-btn" data-tab="orders">Customer Orders <span id="order-count-badge">0</span></button>
+        </div>
+
+        <div id="menu-management-view" class="tab-view active">
+            <div class="admin-header">
+                <h1>Menu <span>Management</span></h1>
+                <button id="reset-btn" class="btn btn-outline">Reset to Defaults</button>
+            </div>
+
+            <div class="admin-grid">
+                <div class="admin-form">
+                    <h3 id="form-title" style="margin-bottom: 1.5rem;">Add New Item</h3>
+                    <form id="item-form">
+                        <input type="hidden" id="edit-id">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" id="item-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="item-category">
+                                <option value="starters">Starters</option>
+                                <option value="mains">Mains</option>
+                                <option value="desserts">Desserts</option>
+                                <option value="drinks">Drinks</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Price (₹)</label>
+                            <input type="number" id="item-price" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Discount (%)</label>
+                            <input type="number" id="item-discount" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Image URL</label>
+                            <input type="url" id="item-image" value="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea id="item-desc" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" id="submit-btn" class="btn btn-primary btn-block">Save Item</button>
+                        <button type="button" id="cancel-edit" class="btn btn-outline btn-block" style="display:none; margin-top: 0.5rem;">Cancel Edit</button>
+                    </form>
+                </div>
+
+                <div class="admin-list">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-menu-list">
+                            <!-- Items populated by admin.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="orders-management-view" class="tab-view">
+            <div class="admin-header">
+                <h1>Customer <span>Orders</span></h1>
+                <div style="display:flex; gap: 10px;">
+                    <button id="generate-sample-order" class="btn btn-primary btn-sm">Generate Sample</button>
+                    <button id="clear-orders" class="btn btn-outline btn-sm">Clear History</button>
+                </div>
+            </div>
+            
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer Details</th>
+                        <th>Items Ordered</th>
+                        <th>Total</th>
+                        <th>Payment / Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-orders-list">
+                    <!-- Orders populated by admin.js -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

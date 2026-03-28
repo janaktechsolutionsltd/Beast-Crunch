@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beast Crunch | Premium Modern Fusion</title>
+    <meta name="description" content="Experience the finest modern fusion cuisine at Beast Crunch. Order online and discover gourmet dishes with exclusive discounts.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="grain-overlay"></div>
+    <header id="header">
+        <nav class="container">
+            <div class="logo">BEAST<span>CRUNCH</span></div>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="header-actions">
+                <button id="cart-btn" class="icon-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                    <span id="cart-count">0</span>
+                </button>
+                <button class="menu-toggle" id="menu-toggle">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-overlay"></div>
+            <div class="container hero-content">
+                <h1 class="reveal">Elevate Your <span>Palate</span></h1>
+                <p class="reveal">Discover a symphony of flavours crafted with savage passion and surgical precision. Modern fusion at its absolute peak.</p>
+                <div class="hero-btns reveal">
+                    <a href="#menu" class="btn btn-primary">Discover the Menu</a>
+                    <a href="#about" class="btn btn-outline">Our Heritage</a>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse"></div>
+            </div>
+        </section>
+
+        <section id="menu" class="menu-section container">
+            <div class="section-header">
+                <h2>Our Exquisite <span>Menu</span></h2>
+                <div class="menu-categories">
+                    <button class="cat-btn active" data-category="all">All</button>
+                    <button class="cat-btn" data-category="starters">Starters</button>
+                    <button class="cat-btn" data-category="mains">Mains</button>
+                    <button class="cat-btn" data-category="desserts">Desserts</button>
+                    <button class="cat-btn" data-category="drinks">Drinks</button>
+                </div>
+            </div>
+
+            <div id="menu-grid" class="menu-grid">
+                <!-- Menu items injected by JS -->
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container about-grid">
+                <div class="about-image reveal">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=800" alt="Restaurant Interior">
+                </div>
+                <div class="about-text reveal">
+                    <h2>Our Culinary <span>Heritage</span></h2>
+                    <p>Founded in 2010, Beast Crunch was born out of a passion for pushing the boundaries of traditional flavors. We believe that dining is not just about the food, but a symphony of art, atmosphere, and emotion.</p>
+                    <p>Our Master Chefs specialize in Modern Fusion, blending delicate eastern spices with robust western techniques. Each dish is a story, meticulously crafted from 100% organic, locally sourced ingredients.</p>
+                    <div class="about-features">
+                        <div class="feature-card">
+                            <span class="feature-icon">🏅</span>
+                            <h4>Chef's Excellence</h4>
+                            <p>Award-winning culinary masters.</p>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">🌿</span>
+                            <h4>Organic First</h4>
+                            <p>Always fresh, sustainably sourced.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <section id="testimonials" class="testimonials-section container">
+            <div class="section-header">
+                <h2>Our <span>Guest</span> Reviews</h2>
+                <p>Real experiences from our valued diners.</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card reveal">
+                    <div class="stars">★★★★★</div>
+                    <p>"The Truffle Arancini is life-changing. The atmosphere at Beast Crunch is unmatched—truly a world-class dining experience."</p>
+                    <div class="guest-info">
+                        <strong>Alexander Wright</strong>
+                        <span>Food Critic</span>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="stars">★★★★★</div>
+                    <p>"Never had fusion this bold and balanced. The Saffron Risotto is a masterpieces. Highly recommend for special occasions."</p>
+                    <div class="guest-info">
+                        <strong>Sophia Chen</strong>
+                        <span>Gourmet Enthusiast</span>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="stars">★★★★★</div>
+                    <p>"Exemplary service and exquisite plating. Every dish feels like a work of art. My favorite spot in the city."</p>
+                    <div class="guest-info">
+                        <strong>Marcus Thorne</strong>
+                        <span>Regular Guest</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="map" class="map-section container">
+            <div class="map-wrapper">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434572227!2d144.95373531531663!3d-37.81627977975124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0x5045675218ce6e0!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sus!4v1634567890123!5m2!1sen!2sus" 
+                    width="100%" 
+                    height="450" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+                <div class="map-info-overlay">
+                    <div class="info-card">
+                        <h4>Visit Us</h4>
+                        <p>123 Culinary Ave, Foodie City, FC 56789</p>
+                        <a href="https://maps.google.com" target="_blank" class="btn btn-outline btn-sm">Get Directions</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Policy Modal -->
+    <div id="policy-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="policy-title">Our <span>Policy</span></h2>
+                <button type="button" class="close-btn" id="close-policy">&times;</button>
+            </div>
+            <div id="policy-text" class="policy-body">
+                <!-- Data injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <aside id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Order</h3>
+            <button id="close-cart" class="close-btn">&times;</button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <!-- Cart items injected by JS -->
+            <div class="empty-cart-msg">Your cart is empty. Start adding some delicious items!</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="total-price">₹0.00</span>
+            </div>
+            <button id="checkout-btn" class="btn btn-primary btn-block">Place Order</button>
+        </div>
+    </aside>
+
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content">
+            <!-- Step 1: Address Details -->
+            <div id="step-details" class="checkout-step active">
+                <div class="step-progress">
+                    <div class="progress-bar active"><span>Details</span></div>
+                    <div class="progress-bar"><span>Payment</span></div>
+                    <div class="progress-bar"><span>Success</span></div>
+                </div>
+                <h3>Delivery Details</h3>
+                <p>Please enter your delivery information.</p>
+                <form id="details-form">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="cust-name" placeholder="Letters only (e.g. John Doe)" required pattern="[A-Za-z\s]+" title="Name should only contain letters">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <div class="phone-input-group">
+                            <div class="custom-country-picker" id="country-picker">
+                                <button type="button" class="country-btn" id="selected-country">
+                                    <span class="btn-flag">🇮🇳</span>
+                                    <span class="btn-code">+91</span>
+                                </button>
+                                <div class="country-dropdown" id="country-list">
+                                    <div class="country-item active" data-flag="🇮🇳" data-code="+91">🇮🇳 India (+91)</div>
+                                    <div class="country-item" data-flag="🇺🇸" data-code="+1">🇺🇸 USA (+1)</div>
+                                    <div class="country-item" data-flag="🇬🇧" data-code="+44">🇬🇧 UK (+44)</div>
+                                    <div class="country-item" data-flag="🇦🇪" data-code="+971">🇦🇪 UAE (+971)</div>
+                                    <div class="country-item" data-flag="🇸🇦" data-code="+966">🇸🇦 Saudi (+966)</div>
+                                    <div class="country-item" data-flag="🇦🇺" data-code="+61">🇦🇺 Australia (+61)</div>
+                                    <div class="country-item" data-flag="🇨🇳" data-code="+86">🇨🇳 China (+86)</div>
+                                </div>
+                                <input type="hidden" id="country-code-val" value="+91">
+                            </div>
+                            <input type="tel" id="cust-phone" placeholder="Numbers only" required pattern="[0-9]+" title="Phone should only contain numbers">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Pincode / Zip Code</label>
+                        <input type="text" id="cust-pincode" placeholder="6-digit Pincode" required pattern="[0-9]{5,6}">
+                    </div>
+                    <div class="form-group">
+                        <label>Street & Area Name</label>
+                        <input type="text" id="cust-street" placeholder="Main Street, Area, Colony" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Building / Flat No.</label>
+                        <input type="text" id="cust-building" placeholder="Flat No. 101, Galaxy Apartments" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nearby Landmark (Optional)</label>
+                        <input type="text" id="cust-landmark" placeholder="e.g. Near City Mall">
+                    </div>
+                    <div class="form-group">
+                        <label>Address Type</label>
+                        <div class="location-types">
+                            <label class="loc-option">
+                                <input type="radio" name="loc-type" value="home" checked>
+                                <div class="loc-card">🏠 Home</div>
+                            </label>
+                            <label class="loc-option">
+                                <input type="radio" name="loc-type" value="work">
+                                <div class="loc-card">🏢 Work</div>
+                            </label>
+                            <label class="loc-option">
+                                <input type="radio" name="loc-type" value="other">
+                                <div class="loc-card">📍 Other</div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-outline back-to-cart">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Next: Payment &rarr;</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Step 2: Payment Selection -->
+            <div id="step-payment" class="checkout-step">
+                <div class="step-progress">
+                    <div class="progress-bar active"><span>Details</span></div>
+                    <div class="progress-bar active"><span>Payment</span></div>
+                    <div class="progress-bar"><span>Success</span></div>
+                </div>
+                <div class="order-summary-mini">
+                    <span>Order Total:</span>
+                    <strong class="modal-total-price-val">₹0.00</strong>
+                </div>
+                <h3>Choose Payment</h3>
+                <div class="payment-options">
+                    <button class="payment-opt" data-method="cod">
+                        <div class="opt-icon">💵</div>
+                        <div class="opt-text">
+                            <strong>Cash on Delivery</strong>
+                            <span>Pay when your food arrives</span>
+                        </div>
+                    </button>
+                    <button class="payment-opt" data-method="online">
+                        <div class="opt-icon">💳</div>
+                        <div class="opt-text">
+                            <strong>Online Payment</strong>
+                            <span>Cards, GPay, PhonePe</span>
+                        </div>
+                    </button>
+                </div>
+                <button type="button" class="btn btn-outline btn-block back-to-details">Back to Details</button>
+            </div>
+
+            <!-- Step 3: Online Payment Details -->
+            <div id="step-online-payment" class="checkout-step">
+                <div class="order-summary-mini">
+                    <span>Pay Online:</span>
+                    <strong class="modal-total-price-val">₹0.00</strong>
+                </div>
+                <h3>Online Payment</h3>
+                <div class="online-methods">
+                    <button class="online-method-btn active" data-type="upi">UPI</button>
+                    <button class="online-method-btn" data-type="card">Card</button>
+                </div>
+                
+                <div id="upi-section" class="online-step-view">
+                    <div class="qr-container">
+                        <div class="payment-logo-row">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Google_Pay_Logo.svg" alt="GPay" height="15">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/PhonePe_Logo.svg" alt="PhonePe" height="15">
+                        </div>
+                        <div class="qr-frame">
+                            <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h4v4H3zM17 3h4v4h-4zM3 17h4v4H3zM9 3h6v2H9zM9 19h6v2H9zM3 9h2v6H3zM19 9h2v6h-2zM9 9h6v6H9z"/><rect x="11" y="11" width="2" height="2" fill="currentColor"/></svg>
+                        </div>
+                        <p style="font-size:0.8rem; margin-top:10px;">Scan to pay via any UPI app</p>
+                    </div>
+                </div>
+
+                <div id="card-section" class="online-step-view" style="display: none;">
+                    <div class="card-mockup">
+                        <div class="card-chip"></div>
+                        <div class="card-number-display">•••• •••• •••• ••••</div>
+                        <div class="card-info-row">
+                            <div class="card-holder-display">CARD HOLDER</div>
+                            <div class="card-expiry-display">MM/YY</div>
+                        </div>
+                    </div>
+                    <div class="card-form">
+                        <input type="text" id="card-num" placeholder="0000 0000 0000 0000" maxlength="19">
+                        <div style="display:flex; gap:10px;">
+                            <input type="text" id="card-exp" placeholder="MM/YY" maxlength="5">
+                            <input type="password" id="card-cvv" placeholder="CVV" maxlength="3">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline back-to-payment">Back</button>
+                    <button type="button" id="confirm-online-btn" class="btn btn-primary">Pay securely &rarr;</button>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+
+    <footer id="contact">
+        <div class="container footer-grid">
+            <div class="footer-info">
+                <div class="logo">BEAST<span>CRUNCH</span></div>
+                <p>Crafting unforgettable dining experiences since 2010. Excellence in every bite.</p>
+                <div class="social-links">
+                    <a href="https://instagram.com" class="social-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://facebook.com" class="social-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="https://twitter.com" class="social-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <ul>
+                    <li><button class="policy-link-btn" data-policy="privacy">Privacy Policy</button></li>
+                    <li><button class="policy-link-btn" data-policy="refund">Refund Policy</button></li>
+                    <li><button class="policy-link-btn" data-policy="terms">Terms of Service</button></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p>123 Culinary Ave, Foodie City</p>
+                <p>Phone: (555) 123-4567</p>
+            <p>Email: hello@beastcrunch.com</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Beast Crunch. All Rights Reserved. | <a href="admin.html" style="color: inherit; text-decoration: none; opacity: 0.5;">Admin</a></p>
+        </div>
+    </footer>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
